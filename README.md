@@ -4,6 +4,8 @@ C++ implementation of the algorithm described in [Fast Deterministic Selection](
 There is only one significant difference between my algorithm and the algorithm described in the paper (that I'm aware of).
 The algorithm as described (or at least as I initially implemented it) doesn't handle repeated elements well, it degrades to quadratic behavior.
 
+The code is a little bit messy, and severely lacking in the comment department, I still have to get around to that.
+
 ## Fixing the quadratic behavior
 
 First, I normally partition the range `[first, last)` into elements less than the partition, and elements greater than or equal to the partition.
