@@ -248,9 +248,8 @@ void BM_upper_median4(benchmark::State &state) {
     auto tmp = arrs;
     state.ResumeTiming();
     for (auto &arr : tmp) {
-      ten::internal::upper_median4(arr.begin(), arr.begin() + 1,
-                                   arr.begin() + 2, arr.begin() + 3,
-                                   std::less<int>{});
+      ten::internal::sort4(arr.begin(), arr.begin() + 1, arr.begin() + 2,
+                           arr.begin() + 3, std::less<int>{});
       benchmark::DoNotOptimize(arr.begin());
       benchmark::DoNotOptimize(arr.begin() + 1);
       benchmark::DoNotOptimize(arr.begin() + 2);
