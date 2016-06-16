@@ -1,4 +1,5 @@
 #include "../quickselect.hpp"
+#include "quickselect_baseline.hpp"
 #include <algorithm>
 #include <benchmark/benchmark.h>
 #include <tuple>
@@ -36,7 +37,7 @@ void BM_quickselect_repeat(benchmark::State &state) {
     state.PauseTiming();
     auto vec = random_vector(state.range_x(), 100);
     state.ResumeTiming();
-    ten::quickselect_adaptave(vec.begin(), vec.end(),
+    ten::quickselect_adaptive(vec.begin(), vec.end(),
                               vec.begin() + vec.size() / 2, std::less<int>{});
     benchmark::DoNotOptimize(vec.data());
   }
@@ -57,7 +58,7 @@ void BM_quickselect(benchmark::State &state) {
     state.PauseTiming();
     auto vec = random_vector(state.range_x(), mod);
     state.ResumeTiming();
-    ten::quickselect_adaptave(vec.begin(), vec.end(),
+    ten::quickselect_adaptive(vec.begin(), vec.end(),
                               vec.begin() + vec.size() / 2, std::less<int>{});
     benchmark::DoNotOptimize(vec.data());
   }
@@ -79,8 +80,8 @@ void BM_quickselect_median3(benchmark::State &state) {
     state.PauseTiming();
     auto vec = random_vector(state.range_x(), mod);
     state.ResumeTiming();
-    ten::internal::quickselect(
-        ten::internal::three_medians<decltype(vec)::iterator, std::less<int>>,
+    ten::quickselect(
+        ten::three_medians<decltype(vec)::iterator, std::less<int>>,
         vec.begin(), vec.end(), vec.begin() + vec.size() / 2, std::less<int>{});
     benchmark::DoNotOptimize(vec.data());
   }
